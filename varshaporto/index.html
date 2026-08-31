@@ -1,143 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="emerald">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Varsha S — Computer Science student, software & Android developer. Portfolio, projects, and experience." />
-  <meta name="theme-color" content="#f0f4fa" />
+  <meta name="theme-color" content="#0a0c10" />
   <title>Varsha S · Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Interactive Background Canvas & Atmospheric Effects -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header / Navigation -->
   <header class="site-header" id="top">
     <div class="header-inner">
-      <a class="logo" href="#top">VS</a>
+      <a class="logo" href="#top" aria-label="Varsha S Homepage">
+        <span class="logo-text">VS</span>
+        <span class="logo-glow" aria-hidden="true"></span>
+      </a>
+
       <nav class="nav" aria-label="Primary">
-        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-          <span class="nav-toggle-bar"></span>
-          <span class="visually-hidden">Menu</span>
-        </button>
+        <div class="nav-actions-mobile">
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+            <span class="nav-toggle-bar"></span>
+          </button>
+        </div>
+
         <ul id="nav-menu" class="nav-list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#awards" class="nav-link">Awards</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
           <li><a href="#contact" class="nav-cta">Contact</a></li>
         </ul>
       </nav>
+
+      <!-- Theme Switcher Pill -->
+      <div class="theme-switcher-wrapper">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Change color theme" aria-expanded="false" aria-haspopup="true">
+          <span class="theme-preview-dot"></span>
+          <span class="theme-label">Theme</span>
+          <svg class="theme-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="theme-dropdown" id="theme-dropdown" role="menu" aria-label="Color Themes">
+          <button type="button" class="theme-option active" data-theme="emerald" role="menuitem">
+            <span class="theme-option-dot" style="background: #2dd4bf;"></span>
+            <span>Cyber Emerald</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="violet" role="menuitem">
+            <span class="theme-option-dot" style="background: #a855f7;"></span>
+            <span>Nebula Violet</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="rose" role="menuitem">
+            <span class="theme-option-dot" style="background: #f43f5e;"></span>
+            <span>Sunset Rose</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="cyan" role="menuitem">
+            <span class="theme-option-dot" style="background: #38bdf8;"></span>
+            <span>Electric Cyan</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="amber" role="menuitem">
+            <span class="theme-option-dot" style="background: #fbbf24;"></span>
+            <span>Solar Amber</span>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-orb hero-orb--one" aria-hidden="true"></div>
       <div class="hero-orb hero-orb--two" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb--three" aria-hidden="true"></div>
+
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Bangalore · Computer Science</p>
-          <h1 class="hero-title">Varsha <span class="accent">S</span></h1>
-          <p class="hero-lead">
-            Software &amp; Android developer building real-world products with Python, Java, TypeScript, and modern web stacks. Interested in AI, full-stack systems, and mobile experiences.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Get in touch</a>
-            <a class="btn btn-ghost" href="https://github.com/Varsha-vk-05" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn btn-ghost" href="https://linkedin.com/in/varsha-s-a26a46339/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-          <dl class="hero-stats">
-            <div>
-              <dt>CGPA</dt>
-              <dd>9.24</dd>
+          <div class="hero-eyebrow-row">
+            <p class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Bangalore · Computer Science
+            </p>
+            <div class="status-badge" title="Open to full-time roles & internships">
+              <span class="status-pulse"></span>
+              <span class="status-text">Available for Opportunities</span>
             </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>AI · Web · Android</dd>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="accent gradient-text">Varsha S</span>
+          </h1>
+
+          <div class="hero-role-container" aria-label="Developer roles">
+            <span class="role-prefix">I build </span>
+            <span class="role-text" id="role-text">Android &amp; Web Apps</span>
+            <span class="typing-cursor" aria-hidden="true">|</span>
+          </div>
+
+          <p class="hero-lead">
+            Software &amp; Android developer building real-world products with Python, Java, TypeScript, and modern stacks. Passionate about AI integrations, robust systems, and high-performance user experiences.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">
+              <span>Get in touch</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a class="btn btn-ghost" href="#projects">
+              <span>Explore Projects</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <a class="btn btn-icon" href="https://github.com/Varsha-vk-05" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a class="btn btn-icon" href="https://linkedin.com/in/varsha-s-a26a46339/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <dl class="hero-stats">
+            <div class="stat-card" data-tilt>
+              <dt>Academic CGPA</dt>
+              <dd class="stat-value" data-counter="9.24" data-decimals="2">9.24</dd>
+            </div>
+            <div class="stat-card" data-tilt>
+              <dt>Projects Built</dt>
+              <dd class="stat-value" data-counter="30" data-suffix="+">30+</dd>
+            </div>
+            <div class="stat-card" data-tilt>
+              <dt>Certifications</dt>
+              <dd class="stat-value" data-counter="8" data-suffix="+">8+</dd>
             </div>
           </dl>
         </div>
-        <div class="hero-card" aria-hidden="true">
-          <div class="hero-card-inner">
-            <span class="hero-card-tag">Open to opportunities</span>
-            <p class="hero-card-text">Internships in software development &amp; Android — shipping features, debugging, and learning fast with teams.</p>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-card-tilt-wrap" data-tilt>
+            <div class="hero-card">
+              <div class="hero-card-inner">
+                <div class="hero-card-header">
+                  <div class="hero-card-status">
+                    <span class="pulse-ring"></span>
+                    <span class="status-pill-text">Open to opportunities</span>
+                  </div>
+                  <span class="hero-badge-tag">2026 Grad</span>
+                </div>
+                
+                <h2 class="hero-card-heading">Engineering clean code &amp; responsive UI</h2>
+                <p class="hero-card-text">
+                  Specializing in Android applications, reactive frontends, and AI-driven intelligence. Ready to collaborate, learn fast, and ship high-impact features.
+                </p>
+
+                <div class="floating-chips">
+                  <span class="floating-chip chip-1">⚡ Kotlin &amp; Android</span>
+                  <span class="floating-chip chip-2">🤖 AI / LangGraph</span>
+                  <span class="floating-chip chip-3">⚛️ React &amp; TypeScript</span>
+                  <span class="floating-chip chip-4">🐍 Python &amp; PyTorch</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- About Section -->
     <section class="section" id="about">
       <div class="container narrow">
-        <h2 class="section-title">About</h2>
-        <p class="prose">
-          I am a Computer Science undergraduate at Vijaya Vittala Institute of Technology with a strong academic record and hands-on experience from internships in software development and Android application development. I enjoy turning ideas into working software — from CNN-based diagnostics to responsive web apps and Kotlin-powered mobile tools.
-        </p>
+        <div class="section-header">
+          <p class="section-kicker">Background</p>
+          <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="about-card" data-tilt>
+          <p class="prose">
+            I am a Computer Science undergraduate at <strong>Vijaya Vittala Institute of Technology</strong> with a strong academic record (<span class="accent-bold">CGPA 9.24</span>) and hands-on experience from internships in software development and Android application engineering.
+          </p>
+          <p class="prose">
+            I enjoy transforming innovative ideas into production-ready software — ranging from medical CNN-based diagnostics and LLM agents to responsive web apps and Kotlin-powered mobile experiences. Always curious, analytical, and eager to build systems that make a tangible difference.
+          </p>
+        </div>
       </div>
     </section>
 
+    <!-- Skills Section -->
     <section class="section section-alt" id="skills">
       <div class="container">
-        <h2 class="section-title">Skills</h2>
+        <div class="section-header text-center">
+          <p class="section-kicker">Core Competencies</p>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-subtitle">A comprehensive toolkit spanning mobile architectures, full-stack systems, and machine learning.</p>
+        </div>
+        
         <div class="skill-grid">
-          <article class="skill-card">
+          <article class="skill-card" data-tilt>
+            <div class="skill-card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
             <h3>Languages</h3>
             <ul class="pill-list">
-              <li>Python</li><li>Java</li><li>Kotlin</li><li>C</li><li>C++</li>
+              <li>Python</li><li>Java</li><li>Kotlin</li><li>C</li><li>C++</li><li>SQL</li>
             </ul>
           </article>
-          <article class="skill-card">
-            <h3>Web</h3>
+
+          <article class="skill-card" data-tilt>
+            <div class="skill-card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3>Web &amp; Frontend</h3>
             <ul class="pill-list">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>React.js</li>
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>TypeScript</li><li>React.js</li><li>Tailwind CSS</li><li>Vite</li>
             </ul>
           </article>
-          <article class="skill-card">
-            <h3>AI / ML</h3>
+
+          <article class="skill-card" data-tilt>
+            <div class="skill-card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+            </div>
+            <h3>AI &amp; Deep Learning</h3>
             <ul class="pill-list">
-              <li>TensorFlow</li><li>Deep Learning</li><li>CNN</li>
+              <li>TensorFlow</li><li>PyTorch</li><li>CNN / Computer Vision</li><li>LangGraph</li><li>Gemini API</li><li>ChromaDB</li>
             </ul>
           </article>
-          <article class="skill-card">
-            <h3>Data &amp; tools</h3>
+
+          <article class="skill-card" data-tilt>
+            <div class="skill-card-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3>Mobile, Tools &amp; Cloud</h3>
             <ul class="pill-list">
-              <li>SQL</li><li>Supabase</li><li>Android Studio</li><li>Git</li><li>GitHub</li><li>VS Code</li>
+              <li>Android Studio</li><li>Supabase</li><li>Firebase</li><li>Git &amp; GitHub</li><li>Streamlit</li><li>Flask / FastAPI</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- Experience Section -->
     <section class="section" id="experience">
       <div class="container">
-        <h2 class="section-title">Experience</h2>
+        <div class="section-header">
+          <p class="section-kicker">Career Path</p>
+          <h2 class="section-title">Work Experience</h2>
+        </div>
+        
         <ol class="timeline">
-          <li class="timeline-item">
-            <div class="timeline-marker"></div>
+          <li class="timeline-item" data-tilt>
+            <div class="timeline-dot"></div>
             <div class="timeline-body">
-              <header>
-                <h3>Android App Development Intern</h3>
-                <p class="timeline-meta">Mind Matrix · Remote · Feb 2026 – May 2026</p>
+              <header class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Android App Development Intern</h3>
+                  <p class="timeline-company">Mind Matrix · Remote</p>
+                </div>
+                <span class="timeline-date-badge">Feb 2026 – May 2026</span>
               </header>
-              <ul>
-                <li>Building Android apps with Android Studio, Kotlin, and Java.</li>
-                <li>Designing UI components, testing, debugging, and optimizing performance with the team.</li>
+              <ul class="timeline-tasks">
+                <li>Architected responsive Android applications using Kotlin, Java, and Android Studio.</li>
+                <li>Designed modern Material UI components, implemented lifecycle management, and resolved performance bottlenecks.</li>
+                <li>Collaborated in agile sprint cycles for testing, feature delivery, and code reviews.</li>
               </ul>
             </div>
           </li>
-          <li class="timeline-item">
-            <div class="timeline-marker"></div>
+
+          <li class="timeline-item" data-tilt>
+            <div class="timeline-dot"></div>
             <div class="timeline-body">
-              <header>
-                <h3>Software Development Intern</h3>
-                <p class="timeline-meta">Yugayatra Retail OPC Private Limited · Remote · Aug 2025 – Oct 2025</p>
+              <header class="timeline-header">
+                <div>
+                  <h3 class="timeline-role">Software Development Intern</h3>
+                  <p class="timeline-company">Yugayatra Retail OPC Private Limited · Remote</p>
+                </div>
+                <span class="timeline-date-badge">Aug 2025 – Oct 2025</span>
               </header>
-              <ul>
-                <li>Developed and maintained web components with HTML, CSS, JavaScript, and React.js.</li>
-                <li>Improved reliability through debugging and performance work; shipped features with the team.</li>
+              <ul class="timeline-tasks">
+                <li>Engineered scalable, interactive web user interfaces using HTML, CSS, JavaScript, and React.js.</li>
+                <li>Enhanced web performance, debugged complex UI states, and optimized client-side rendering.</li>
+                <li>Participated in cross-functional feature planning and API integration.</li>
               </ul>
             </div>
           </li>
@@ -145,206 +326,1052 @@
       </div>
     </section>
 
+    <!-- Projects Section -->
     <section class="section section-alt" id="projects">
       <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <div class="project-grid">
-          <article class="project-card">
+        <div class="section-header text-center">
+          <p class="section-kicker">Portfolio</p>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">A showcase of 30 software applications, machine learning tools, and Android applications.</p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="project-filter-container" role="tablist" aria-label="Filter projects by category">
+          <button type="button" class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+            <span>All Projects</span>
+            <span class="filter-count">30</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="android" role="tab" aria-selected="false">
+            <span>Android &amp; Mobile</span>
+            <span class="filter-count">12</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="ai" role="tab" aria-selected="false">
+            <span>AI / ML &amp; Agents</span>
+            <span class="filter-count">9</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="web" role="tab" aria-selected="false">
+            <span>Web &amp; Full Stack</span>
+            <span class="filter-count">13</span>
+          </button>
+          <button type="button" class="filter-tab" data-filter="tools" role="tab" aria-selected="false">
+            <span>Tools &amp; Games</span>
+            <span class="filter-count">6</span>
+          </button>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          <!-- Project 1 -->
+          <article class="project-card" data-category="ai web" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Medical imaging and clinical technology setting related to AI diagnosis" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Clinical workspace suggesting healthcare data and AI assistance" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">AI Assistant</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">Dec 2025</p>
-              <h3>AI Powered Pneumonia Diagnosis</h3>
-              <p class="project-tags">Deep Learning · Python · TensorFlow · CNN</p>
-              <p class="project-desc">Medical image classification from chest X-rays using a CNN for detection and prediction.</p>
-            </div>
-          </article>
-          <article class="project-card">
-            <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Smartphone in use, suggesting a mobile safety and alerts application" width="720" height="450" loading="lazy" decoding="async" />
-            </figure>
-            <div class="project-card-body">
-              <p class="project-date">Sep 2025</p>
-              <h3>Women Safety</h3>
-              <p class="project-tags">Android · Java · Android Studio</p>
-              <p class="project-desc">Emergency assistance app with SOS alerts and location-based safety features.</p>
-            </div>
-          </article>
-          <article class="project-card">
-            <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Notebook and study workspace for planning and learning" width="720" height="450" loading="lazy" decoding="async" />
-            </figure>
-            <div class="project-card-body">
-              <p class="project-date">Feb 2025</p>
-              <h3>Lumina — AI Study Planner</h3>
-              <p class="project-tags">TypeScript · AI integration</p>
-              <p class="project-desc">Intelligent study scheduling to improve productivity and time management.</p>
-            </div>
-          </article>
-          <article class="project-card">
-            <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Urban city skyline and streets, local discovery theme" width="720" height="450" loading="lazy" decoding="async" />
-            </figure>
-            <div class="project-card-body">
-              <p class="project-date">2026</p>
-              <h3>CityConnect</h3>
-              <p class="project-tags">Android · Kotlin · XML layouts</p>
-              <p class="project-desc">Discover local places by category — cafés, restaurants, parks, shopping, and kid-friendly spots — with curated listings and a clean multi-screen UI.</p>
+              <div class="project-meta-row">
+                <span class="project-date">Jul 2026</span>
+                <span class="project-stack-tag">React · LangGraph · FastAPI</span>
+              </div>
+              <h3>HCP Nexus AI Assistant</h3>
+              <p class="project-desc">Healthcare CRM where medical reps log doctor visits in natural language; the assistant extracts entities, stores history, and suggests intelligent follow-ups.</p>
               <div class="project-links">
-                <a class="project-link" href="https://github.com/Varsha-vk-05/City_connect" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link" href="https://github.com/Varsha-vk-05/HCP-Nexus-AI-Assistant" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
               </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 2 -->
+          <article class="project-card" data-category="ai tools" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Colorful vegetarian food platter, restaurant ordering theme" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Analytics charts and tables for data questions" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Data Science</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">2026</p>
+              <div class="project-meta-row">
+                <span class="project-date">Jul 2026</span>
+                <span class="project-stack-tag">Python · Pandas · Streamlit</span>
+              </div>
+              <h3>Data Q&amp;A Agent</h3>
+              <p class="project-desc">Ask plain-English questions over CSV and Excel files; answers come from real pandas computations with supporting tables, not guessed numbers.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Data-Q-A-Agent" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card" data-category="android ai" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Healthcare companion and vitals tracking theme" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Android + AI</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">May 2026</span>
+                <span class="project-stack-tag">Kotlin · Android · Healthcare</span>
+              </div>
+              <h3>Arogya Sahaya</h3>
+              <p class="project-desc">Smart health companion with AI prescription scanning, pill reminders, vital logs, emergency SOS, and community health-camp listings.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/ArogyaSahaya" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Airplane wing above clouds, flight search theme" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin</span>
+              </div>
+              <h3>Flight Search App</h3>
+              <p class="project-desc">Android flight search experience with destination browsing, interactive filters, and a structured results flow for trip comparisons.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Flight_Search_App" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Colorful food platter for an ordering app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Material Design</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin · Material</span>
+              </div>
               <h3>Lunch Tray</h3>
-              <p class="project-tags">Android · Kotlin · Material Design</p>
-              <p class="project-desc">Food-ordering flow with entrees, sides, and accompaniments, live order summary, tax and totals, and smooth activity-based navigation.</p>
+              <p class="project-desc">Food-ordering flow with entrees, sides, and accompaniments, live order calculation, tax and totals, and activity navigation.</p>
               <div class="project-links">
-                <a class="project-link" href="https://github.com/Varsha-vk-05/lunch_tray" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link" href="https://github.com/Varsha-vk-05/lunch_tray" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
               </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 6 -->
+          <article class="project-card" data-category="android" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Green crop field representing agriculture and market pricing" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Fresh juice and drinks for a tracker app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">2025</p>
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin</span>
+              </div>
+              <h3>Juice Tracker</h3>
+              <p class="project-desc">Track juice and beverage intake with a clean Android UI for logging drinks, custom measurements, and reviewing daily consumption.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Juice_tracker" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 7 -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Books on a shelf representing a bookshelf app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin</span>
+              </div>
+              <h3>My Bookshelf</h3>
+              <p class="project-desc">Personal bookshelf app to browse, organize, and view book details and reading progress in an intuitive Android layout.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/MY_Bookshelf_App" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 8 -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="City streets for local place discovery" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin · XML</span>
+              </div>
+              <h3>CityConnect</h3>
+              <p class="project-desc">Discover local places by category — cafés, parks, shopping, and family spots — with curated listings and fluid multi-screen UI.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/City_connect" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 9: Bus Schedule -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1562620669-98104534c6cd?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="City bus suggesting a schedule app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin</span>
+              </div>
+              <h3>Bus Schedule</h3>
+              <p class="project-desc">Bus timetable app for viewing routes and stop times so commuters can plan trips without digging through static lists.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Bus_Schedule" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 10: Cup Cake -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Cupcakes for a dessert ordering app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Apr 2026</span>
+                <span class="project-stack-tag">Android · Kotlin</span>
+              </div>
+              <h3>Cup Cake</h3>
+              <p class="project-desc">Cupcake ordering sample with flavor and pickup options, order summary, and a guided multi-screen checkout.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Cup_Cake" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 11: Glitch Snake -->
+          <article class="project-card" data-category="tools web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Retro game graphics suggesting a snake arcade game" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">TypeScript Game</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Mar 2026</span>
+                <span class="project-stack-tag">TypeScript · Canvas</span>
+              </div>
+              <h3>Glitch Snake</h3>
+              <p class="project-desc">Classic snake arcade mechanics enhanced with cyberpunk visual noise, CRT scanlines, and audio-visual glitch effects in TypeScript.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Glitch_snake" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 12: 30 Days UI/UX -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="UI design sketches and interface exploration" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Android UI</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Mar 2026</span>
+                <span class="project-stack-tag">Kotlin · Android · UI/UX</span>
+              </div>
+              <h3>30 Days UI/UX</h3>
+              <p class="project-desc">A 30-day UI/UX practice series of Android screens, interaction animations, and modern Material patterns built in Kotlin.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/30days_UI_UX" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 13: ArtSpace -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Artwork on a gallery wall" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Mobile App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Mar 2026</span>
+                <span class="project-stack-tag">Kotlin · Android</span>
+              </div>
+              <h3>ArtSpace</h3>
+              <p class="project-desc">Art gallery viewer that cycles through works with titles and artist credits in a focused Android UI.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/ArtSpace" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 14: Lumina -->
+          <article class="project-card" data-category="ai web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Study planner notebook and workspace" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Feb 2026</span>
+                <span class="project-stack-tag">TypeScript · Gemini · React</span>
+              </div>
+              <h3>Lumina — AI Study Planner</h3>
+              <p class="project-desc">Personalized study schedules with Active Recall, Pomodoro cycles, Feynman technique prompts, and AI synthesis powered by Google Gemini.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/lumina-ai-studyplanner" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://ai.studio/apps/drive/17_Jq733hTW46JFiTj96d4xW-BPvneyWa" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 15: AgriSmart -->
+          <article class="project-card" data-category="ai web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Green crop field for farm market prices" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">React · Supabase · Tailwind</span>
+              </div>
               <h3>AgriSmart (Organopredictor)</h3>
-              <p class="project-tags">React · TypeScript · Vite · Supabase · Tailwind</p>
-              <p class="project-desc">Farmers’ market price forecasts, organic product store with cart and checkout, charts, and multilingual support (EN / HI / MR).</p>
+              <p class="project-desc">Farmers’ crop price forecasts with integrated organic marketplace, cart, checkout, interactive charts, and multilingual support (EN/HI/MR).</p>
               <div class="project-links">
                 <a class="project-link" href="https://github.com/Varsha-vk-05/organopredictor" target="_blank" rel="noopener noreferrer">Code</a>
-                <a class="project-link project-link--live" href="https://farmercroppredictions.netlify.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a class="project-link project-link--live" href="https://farmercroppredictions.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
               </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 16: AI Content Creation -->
+          <article class="project-card" data-category="ai web" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Person writing and planning content at a desk" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Writing and planning content at a desk" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">2025</p>
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">React · TypeScript · Vite</span>
+              </div>
               <h3>AI Content Creation</h3>
-              <p class="project-tags">React · TypeScript · Vite · Tailwind · Supabase</p>
-              <p class="project-desc">Project-based AI content workspace with auth, dashboard, editor, protected routes, and settings — built for planning and managing generated content.</p>
+              <p class="project-desc">Project-based AI content workspace featuring authentication, analytical dashboard, rich-text editor, and generation workflows.</p>
               <div class="project-links">
                 <a class="project-link" href="https://github.com/Varsha-vk-05/AiContentCreation" target="_blank" rel="noopener noreferrer">Code</a>
-                <a class="project-link project-link--live" href="https://6940404f7a649900c7c68a54--aicontentcreation.netlify.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a class="project-link project-link--live" href="https://6940404f7a649900c7c68a54--aicontentcreation.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
               </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 17: AI Pneumonia -->
+          <article class="project-card" data-category="ai android" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Skincare and natural beauty products, gentle skin wellness theme" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Chest X-ray style medical imaging for pneumonia AI" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Deep Learning</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">Dec 2025</p>
-              <h3>Dreamcare</h3>
-              <p class="project-tags">HTML · CSS · JavaScript</p>
-              <p class="project-desc">Skin health awareness site with education, symptom checklist, contact flow, and an in-browser AI-style skin analysis demo (educational only).</p>
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">PyTorch · Flask · Android</span>
+              </div>
+              <h3>AI Pneumonia Diagnosis</h3>
+              <p class="project-desc">Multi-test diagnostic system for X-ray &amp; CT scans using Grad-CAM heatmaps for infection localization, voice queries, and cross-platform clients.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Ai_Powered_Pneumonia_diagnosis" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 18: Dreamcare -->
+          <article class="project-card" data-category="ai web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Skincare products and skin wellness" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">HTML · CSS · JavaScript</span>
+              </div>
+              <h3>Dreamcare (DermaDetect)</h3>
+              <p class="project-desc">Skin-health awareness portal with educational guides, symptom checklist, contact flow, and in-browser AI-style analysis demo.</p>
               <div class="project-links">
                 <a class="project-link" href="https://github.com/Varsha-vk-05/Dreamcare" target="_blank" rel="noopener noreferrer">Code</a>
-                <a class="project-link project-link--live" href="https://dermadetect.netlify.app/" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a class="project-link project-link--live" href="https://dermadetect.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
               </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 19: Daylytics -->
+          <article class="project-card" data-category="web" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Modern office building entrance suggesting visitor and access management" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Habits and daily planning dashboard" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">Sep 2025</p>
-              <h3>GateBell</h3>
-              <p class="project-tags">Python</p>
-              <p class="project-desc">Visitor management with entry tracking, authentication, and structured records.</p>
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">React · Recharts · CSS</span>
+              </div>
+              <h3>Daylytics</h3>
+              <p class="project-desc">Personal analytics dashboard to monitor mood, habits, sleep quality, tasks, water intake, and screen time with animated charts.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/daylytics" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://daylytics-ten.vercel.app" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
             </div>
           </article>
-          <article class="project-card">
+
+          <!-- Project 20: GlowUp Tips -->
+          <article class="project-card" data-category="web" data-tilt>
             <figure class="project-poster">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Analytics dashboard with charts on a screen" width="720" height="450" loading="lazy" decoding="async" />
+              <img src="assets/projects/glowuptips.jpg" alt="Skincare and makeup products for GlowUp Tips" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
             </figure>
             <div class="project-card-body">
-              <p class="project-date">Dec 2025</p>
-              <h3>Daylytics</h3>
-              <p class="project-tags">Web · CSS · dashboards</p>
-              <p class="project-desc">Personal life dashboard for habits, mood, and productivity with charts and clear layout.</p>
+              <div class="project-meta-row">
+                <span class="project-date">Dec 2025</span>
+                <span class="project-stack-tag">HTML · CSS · JavaScript</span>
+              </div>
+              <h3>GlowUp Tips</h3>
+              <p class="project-desc">Beauty and skincare guidance with filtered makeup tutorials, skin-type routines, and curated product recommendations.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/GlowUpTip" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://velveraglow.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 21: Onboarding Agent -->
+          <article class="project-card" data-category="ai tools" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="New employee onboarding and documents" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Nov 2025</span>
+                <span class="project-stack-tag">Python · ChromaDB · Streamlit</span>
+              </div>
+              <h3>Onboarding Agent</h3>
+              <p class="project-desc">AI corporate onboarding assistant: PDF knowledge base vectorization, cited Q&amp;A, individualized onboarding plans, and automated alerts.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Onboarding-agent" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://app-agent-n5rhvaqy9ba4xrbz6abuou.streamlit.app" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 22: Bitebazar -->
+          <article class="project-card" data-category="web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Food ordering and marketplace" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">E-Commerce</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Sep 2025</span>
+                <span class="project-stack-tag">TypeScript · Web</span>
+              </div>
+              <h3>Bitebazar</h3>
+              <p class="project-desc">Modern food-ordering marketplace connecting local vendors and customers with a responsive menu viewer and streamlined checkout.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Bitebazar" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 23: GateBell -->
+          <article class="project-card" data-category="tools" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Building entrance for visitor and gate management" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Sep 2025</span>
+                <span class="project-stack-tag">Python · MQTT</span>
+              </div>
+              <h3>GateBell IoT System</h3>
+              <p class="project-desc">Privacy-first doorbell and visitor management concept with instant notifications, camera snapshots, and smart home hooks.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Gatebell" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/762ba47aaf189fdd1245f171da3d1d00/9216dc85-81bd-49d7-aaa3-30fcee4535f5/index.html" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 24: Presswala -->
+          <article class="project-card" data-category="web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Folded laundry suggesting a laundry service app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Sep 2025</span>
+                <span class="project-stack-tag">JavaScript · Firebase</span>
+              </div>
+              <h3>Presswala</h3>
+              <p class="project-desc">On-demand laundry management app for scheduling washes, steam iron bookings, order tracking, invoice generation, and admin controls.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Presswala" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/e8b5bbc76299b30986f4d4335b26a625/573b2c57-b9e6-49d6-8331-a9a413eb5ce5/index.html" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 25: School Deko -->
+          <article class="project-card" data-category="web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="School campus for a school directory" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Web Portal</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Sep 2025</span>
+                <span class="project-stack-tag">HTML · CSS · JavaScript</span>
+              </div>
+              <h3>School Deko</h3>
+              <p class="project-desc">Responsive Indian school directory with search, filtering, school profiles, and an interactive 3D-inspired layout for browsing campuses.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Schooldeko" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 26: Caesar Cipher -->
+          <article class="project-card" data-category="tools" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Cipher and encryption theme" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Security Tool</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Sep 2025</span>
+                <span class="project-stack-tag">JavaScript · Python</span>
+              </div>
+              <h3>Caesar Cipher &amp; Analyzer</h3>
+              <p class="project-desc">Cryptographic encryption and decryption tool with automated letter frequency analysis and interactive charts for learning cryptanalysis.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/Caesar-cipher" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 27: Diabetes Risk -->
+          <article class="project-card" data-category="ai web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Health metrics for diabetes risk prediction" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge project-badge--live">Live App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Aug 2025</span>
+                <span class="project-stack-tag">Python · Flask · ML</span>
+              </div>
+              <h3>Diabetes Risk Predictor</h3>
+              <p class="project-desc">Machine-learning powered healthcare application that computes diabetes risk scores from user biometric inputs with visual risk indicators.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/diabetes_risk" target="_blank" rel="noopener noreferrer">Code</a>
+                <a class="project-link project-link--live" href="https://diabetes-risk.vercel.app" target="_blank" rel="noopener noreferrer">
+                  <span class="live-dot"></span> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 28: Women Safety -->
+          <article class="project-card" data-category="android" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Smartphone for an emergency safety app" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Android App</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">Aug 2025</span>
+                <span class="project-stack-tag">Android · Java</span>
+              </div>
+              <h3>Women Safety Guardian</h3>
+              <p class="project-desc">Emergency response application with 1-touch SOS broadcasting, automated real-time GPS location sharing, and emergency helpline routing.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/womensafety" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 29: Social Media Admin -->
+          <article class="project-card" data-category="web" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Admin dashboard with charts and reports" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Dashboard</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">May 2025</span>
+                <span class="project-stack-tag">JavaScript · Chart.js · PHP</span>
+              </div>
+              <h3>Social Media Admin Portal</h3>
+              <p class="project-desc">Responsive metrics dashboard with real-time Chart.js analytics, member tables, role management, and stepper workflows.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/social-media-pph" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 30: Omicorn Basic -->
+          <article class="project-card" data-category="tools" data-tilt>
+            <figure class="project-poster">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&amp;fit=crop&amp;w=720&amp;h=450&amp;q=80" alt="Code and data scripts for a Python learning project" width="720" height="450" loading="lazy" decoding="async" />
+              <div class="project-badge">Python Tool</div>
+            </figure>
+            <div class="project-card-body">
+              <div class="project-meta-row">
+                <span class="project-date">May 2025</span>
+                <span class="project-stack-tag">Python · Analytics</span>
+              </div>
+              <h3>Omicorn Basic</h3>
+              <p class="project-desc">Lightweight Python starter for data handling, exploratory transformations, and modular analytics scripts.</p>
+              <div class="project-links">
+                <a class="project-link" href="https://github.com/Varsha-vk-05/omicorn-basic" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                </a>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- Awards & Certifications Section -->
     <section class="section" id="awards">
       <div class="container">
-        <h2 class="section-title">Awards &amp; certifications</h2>
+        <div class="section-header">
+          <p class="section-kicker">Credentials</p>
+          <h2 class="section-title">Awards &amp; Certifications</h2>
+          <p class="section-subtitle">Verified professional credentials across software engineering, cloud architecture, AI, and networking. Click any card to view the official certificate.</p>
+        </div>
+
         <ul class="awards-list">
-          <li>Software Development Internship — Yugayatra Retail OPC Pvt Ltd</li>
-          <li>Networking and Web Technology — Wingspan</li>
-          <li>Getting Started with Artificial Intelligence — IBM Skills Build</li>
-          <li>EBSCO &amp; AMA Training — Vijaya Vittala Institute of Technology</li>
-          <li>Green Skills and Artificial Intelligence — Skills4Future (AICTE &amp; Edu net Foundation)</li>
-          <li>Oracle Cloud Infrastructure — Oracle</li>
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/yugayatra-internship.png" data-title="Software Development Internship — Yugayatra Retail OPC Pvt Ltd">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Software Development Internship</h3>
+              <p class="cert-item__desc">Completed intensive internship as a Software Engineer Intern, contributing to production-grade web features and UI modules at Yugayatra Retail.</p>
+              <p class="cert-item__meta">Yugayatra Retail OPC Pvt Ltd · Aug–Oct 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/oracle-oci.png" data-title="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Oracle Cloud Infrastructure — AI Foundations Associate</h3>
+              <p class="cert-item__desc">Oracle Certified Foundations Associate credential validating industry mastery of OCI cloud infrastructure, AI models, and machine learning deployments.</p>
+              <p class="cert-item__meta">Oracle University · Sep 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/ibm-ai.png" data-title="Getting Started with Artificial Intelligence — IBM SkillsBuild">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Getting Started with Artificial Intelligence</h3>
+              <p class="cert-item__desc">Comprehensive foundation in artificial intelligence paradigms, deep learning fundamentals, NLP, and ethical AI development from IBM SkillsBuild.</p>
+              <p class="cert-item__meta">IBM SkillsBuild · Feb 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/cisco-data-analytics.png" data-title="Data Analytics Essentials — Cisco Networking Academy">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Data Analytics Essentials</h3>
+              <p class="cert-item__desc">Mastered core data science methodologies, statistical exploratory data analysis, and data transformation through Cisco Networking Academy.</p>
+              <p class="cert-item__meta">Cisco Networking Academy · Aug 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/nxtwave-genai.png" data-title="AI for Students: Build Your Own Generative AI Model — NxtWave">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">AI for Students: Build Your Own Generative AI Model</h3>
+              <p class="cert-item__desc">Award of Appreciation for building generative AI models, transformer prompt pipelines, and hands-on workshop leadership.</p>
+              <p class="cert-item__meta">NxtWave · Feb 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/infosys-java.png" data-title="Programming using Java — Infosys Springboard">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Programming using Java</h3>
+              <p class="cert-item__desc">In-depth certification covering object-oriented programming, data structures, multithreading, and algorithmic design in Java.</p>
+              <p class="cert-item__meta">Infosys Springboard · Aug 2026</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/wingspan-networking.png" data-title="Networking and Web Technology — Infosys Springboard">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">Networking and Web Technology</h3>
+              <p class="cert-item__desc">Mastery of TCP/IP networking stack, HTTP protocols, DNS architecture, and web systems engineering fundamentals.</p>
+              <p class="cert-item__meta">Infosys Springboard · Mar 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
+
+          <li class="cert-item" tabindex="0" role="button" data-cert="assets/certificates/ebsco-ama.png" data-title="EBSCO &amp; AMA Training — Vijaya Vittala Institute of Technology">
+            <div class="cert-item__badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cert-item__content">
+              <h3 class="cert-item__title">EBSCO &amp; AMA Training</h3>
+              <p class="cert-item__desc">Training on scholarly literature indexing, research database exploration, and AMA scientific publication standards.</p>
+              <p class="cert-item__meta">Vijaya Vittala Institute of Technology · Mar 2025</p>
+            </div>
+            <span class="cert-item__hint">
+              <span>View Certificate</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </span>
+          </li>
         </ul>
       </div>
     </section>
 
+    <!-- Education Section -->
     <section class="section section-alt" id="education">
       <div class="container">
-        <h2 class="section-title">Education</h2>
+        <div class="section-header">
+          <p class="section-kicker">Academics</p>
+          <h2 class="section-title">Education</h2>
+        </div>
+
         <ul class="edu-list">
-          <li>
-            <div>
-              <h3>B.E. Computer Science</h3>
-              <p>Vijaya Vittala Institute of Technology, Bangalore</p>
+          <li class="edu-card" data-tilt>
+            <div class="edu-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
             </div>
-            <p class="edu-meta">Nov 2022 – Present · CGPA 9.24</p>
+            <div class="edu-info">
+              <h3>B.E. in Computer Science &amp; Engineering</h3>
+              <p class="edu-school">Vijaya Vittala Institute of Technology, Bangalore</p>
+              <p class="edu-period">Nov 2022 – Present</p>
+            </div>
+            <div class="edu-grade-badge">
+              <span class="edu-grade-label">CGPA</span>
+              <span class="edu-grade-val">9.24 / 10</span>
+            </div>
           </li>
-          <li>
-            <div>
-              <h3>Pre-University Education</h3>
-              <p>KSVK Pre-University College, Bangalore</p>
+
+          <li class="edu-card" data-tilt>
+            <div class="edu-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
             </div>
-            <p class="edu-meta">Jun 2020 – Apr 2022 · 88.08%</p>
+            <div class="edu-info">
+              <h3>Pre-University Education (Science)</h3>
+              <p class="edu-school">KSVK Pre-University College, Bangalore</p>
+              <p class="edu-period">Jun 2020 – Apr 2022</p>
+            </div>
+            <div class="edu-grade-badge">
+              <span class="edu-grade-label">Score</span>
+              <span class="edu-grade-val">88.08%</span>
+            </div>
           </li>
-          <li>
-            <div>
-              <h3>SSLC</h3>
-              <p>KSVK School, Bangalore</p>
+
+          <li class="edu-card" data-tilt>
+            <div class="edu-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
             </div>
-            <p class="edu-meta">Jun 2019 – Apr 2020 · 88.8%</p>
+            <div class="edu-info">
+              <h3>Secondary School Leaving Certificate (SSLC)</h3>
+              <p class="edu-school">KSVK School, Bangalore</p>
+              <p class="edu-period">Jun 2019 – Apr 2020</p>
+            </div>
+            <div class="edu-grade-badge">
+              <span class="edu-grade-label">Score</span>
+              <span class="edu-grade-val">88.80%</span>
+            </div>
           </li>
         </ul>
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="section contact-section" id="contact">
-      <div class="container narrow contact-panel">
-        <h2 class="section-title">Contact</h2>
-        <p class="prose contact-lead">I am happy to connect about internships, collaborations, or technical discussions.</p>
-        <ul class="contact-links">
-          <li><a href="mailto:varsha.s010405@gmail.com">varsha.s010405@gmail.com</a></li>
-          <li><a href="tel:+917019388708">+91 70193 88708</a></li>
-          <li><a href="https://github.com/Varsha-vk-05" target="_blank" rel="noopener noreferrer">github.com/Varsha-vk-05</a></li>
-          <li><a href="https://linkedin.com/in/varsha-s-a26a46339/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></li>
-        </ul>
+      <div class="container narrow">
+        <div class="contact-panel" data-tilt>
+          <div class="contact-panel-glow" aria-hidden="true"></div>
+          
+          <div class="contact-header">
+            <p class="section-kicker">Get In Touch</p>
+            <h2 class="section-title">Let's Connect &amp; Build</h2>
+            <p class="prose contact-lead">
+              I am open for full-time software engineering roles, Android development internships, and exciting technical collaborations. Feel free to reach out directly!
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Email Card -->
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-card-details">
+                <span class="contact-card-label">Email</span>
+                <a href="mailto:varsha.s010405@gmail.com" class="contact-card-val">varsha.s010405@gmail.com</a>
+              </div>
+              <button type="button" class="copy-btn" data-copy="varsha.s010405@gmail.com" aria-label="Copy email address" title="Copy to clipboard">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Phone Card -->
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-card-details">
+                <span class="contact-card-label">Phone</span>
+                <a href="tel:+917019388708" class="contact-card-val">+91 70193 88708</a>
+              </div>
+              <button type="button" class="copy-btn" data-copy="+917019388708" aria-label="Copy phone number" title="Copy to clipboard">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- GitHub Card -->
+            <a href="https://github.com/Varsha-vk-05" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--link">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+              <div class="contact-card-details">
+                <span class="contact-card-label">GitHub</span>
+                <span class="contact-card-val">github.com/Varsha-vk-05</span>
+              </div>
+              <span class="contact-card-arrow">↗</span>
+            </a>
+
+            <!-- LinkedIn Card -->
+            <a href="https://linkedin.com/in/varsha-s-a26a46339/" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--link">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </div>
+              <div class="contact-card-details">
+                <span class="contact-card-label">LinkedIn</span>
+                <span class="contact-card-val">linkedin.com/in/varsha-s</span>
+              </div>
+              <span class="contact-card-arrow">↗</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Varsha S. Built with semantic HTML &amp; care.</p>
-      <a href="#top" class="footer-top">Back to top</a>
+      <div class="footer-brand">
+        <a href="#top" class="footer-logo">VS</a>
+        <p>© <span id="year">2026</span> Varsha S. Built with care, semantic HTML &amp; modern CSS.</p>
+      </div>
+      <a href="#top" class="footer-top-link" id="footer-top-btn">
+        <span>Back to top</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </a>
     </div>
   </footer>
 
+  <!-- Floating Back To Top Widget -->
+  <button type="button" class="floating-top-btn" id="floating-top-btn" aria-label="Scroll to top">
+    <svg class="progress-ring" width="44" height="44" viewBox="0 0 44 44">
+      <circle class="progress-ring-bg" cx="22" cy="22" r="18" fill="transparent" stroke-width="3"></circle>
+      <circle class="progress-ring-circle" id="progress-circle" cx="22" cy="22" r="18" fill="transparent" stroke-width="3"></circle>
+    </svg>
+    <svg class="arrow-up-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Certificate Image Modal -->
+  <div id="cert-modal" class="cert-modal" hidden aria-hidden="true">
+    <div class="cert-modal__backdrop" data-cert-close></div>
+    <div class="cert-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+      <div class="cert-modal__header">
+        <h3 id="cert-modal-title" class="cert-modal__title">Certificate</h3>
+        <button type="button" class="cert-modal__close" data-cert-close aria-label="Close certificate modal">&times;</button>
+      </div>
+      <div class="cert-modal__body">
+        <img class="cert-modal__img" src="" alt="" />
+        <p class="cert-modal__error" hidden>Certificate preview could not be loaded.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
